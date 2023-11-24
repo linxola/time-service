@@ -34,12 +34,8 @@ module TimeService
 
     def convert_to_minutes(time_string)
       parsed_time = time_string.split(/[:\s]/)
-      case parsed_time.last
-      when 'AM'
-        (parsed_time[0].to_i * 60) + parsed_time[1].to_i
-      when 'PM'
-        (parsed_time[0].to_i * 60) + parsed_time[1].to_i + 720
-      end
+      time = (parsed_time[0].to_i * 60) + parsed_time[1].to_i
+      parsed_time.last == 'PM' ? time + 720 : time
     end
 
     def convert_to_time_string(minutes)
